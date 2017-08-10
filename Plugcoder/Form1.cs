@@ -31,7 +31,7 @@ namespace Plugcoder
 
         private void btnParse_Click(object sender, EventArgs e)
         {
-            Plugcoder.Codeplug codeplug = new Plugcoder.Codeplug(@"X:\Ham radio\Tytera\20170714-N5JLC.rdt");
+            Plugcoder.Codeplug codeplug = new Plugcoder.Codeplug(openFileDialog1.FileName);
 
             textBox1.Text = codeplug.ToString();
         }
