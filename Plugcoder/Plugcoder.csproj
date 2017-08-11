@@ -50,6 +50,12 @@
     <Compile Include="Channel.cs" />
     <Compile Include="Contacts.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="MD380RDTObject.cs" />
     <Compile Include="RxGroups.cs" />
     <Compile Include="Zone.cs" />
@@ -66,6 +72,9 @@
     <Compile Include="Zones.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

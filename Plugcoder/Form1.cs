@@ -35,5 +35,11 @@ namespace Plugcoder
 
             textBox1.Text = codeplug.ToString();
         }
+
+        private void btnOpenEditor_Click(object sender, EventArgs e)
+        {
+            FormEditor f = new FormEditor();
+            f.Show();
+        }
     }
 }
