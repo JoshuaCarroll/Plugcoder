@@ -45,18 +45,18 @@ namespace Plugcoder
         {
             if (bytes.Count == this.BytesPerEntry)
             {
-                ContactIndex = (bytes.Array[bytes.Offset + 6].ToString("X") + bytes.Array[bytes.Offset + 7].ToString("X")).hexToDec();
-                EmergencyIndex = (bytes.Array[bytes.Offset + 10].ToString("X")).hexToDec();
-                ScanListIndex = (bytes.Array[bytes.Offset + 11].ToString("X")).hexToDec();
-                ReceiveGroupIndex = (bytes.Array[bytes.Offset + 12].ToString("X")).hexToDec();
+                ContactIndex = (bytes.Array[bytes.Offset + 6].ToString("X2") + bytes.Array[bytes.Offset + 7].ToString("X")).hexToDec();
+                EmergencyIndex = (bytes.Array[bytes.Offset + 10].ToString("X2")).hexToDec();
+                ScanListIndex = (bytes.Array[bytes.Offset + 11].ToString("X2")).hexToDec();
+                ReceiveGroupIndex = (bytes.Array[bytes.Offset + 12].ToString("X2")).hexToDec();
 
-                string rx = bytes.Array[bytes.Offset + 19].ToString("X") + bytes.Array[bytes.Offset + 18].ToString("X") + bytes.Array[bytes.Offset + 17].ToString("X") + bytes.Array[bytes.Offset + 16].ToString("X");
+                string rx = bytes.Array[bytes.Offset + 19].ToString("X2") + bytes.Array[bytes.Offset + 18].ToString("X2") + bytes.Array[bytes.Offset + 17].ToString("X2") + bytes.Array[bytes.Offset + 16].ToString("X2");
                 if (rx != "FFFFFFFF")
                 {
                     ReceiveFrequency = double.Parse(rx) / 10000;
                 }
 
-                string tx = bytes.Array[bytes.Offset + 23].ToString("X") + bytes.Array[bytes.Offset + 22].ToString("X") + bytes.Array[bytes.Offset + 21].ToString("X") + bytes.Array[bytes.Offset + 20].ToString("X");
+                string tx = bytes.Array[bytes.Offset + 23].ToString("X2") + bytes.Array[bytes.Offset + 22].ToString("X2") + bytes.Array[bytes.Offset + 21].ToString("X2") + bytes.Array[bytes.Offset + 20].ToString("X2");
                 if (tx != "FFFFFFFF")
                 {
                     TransmitFrequency = double.Parse(tx) / 10000;
@@ -64,9 +64,9 @@ namespace Plugcoder
 
                 for (int i = bytes.Offset + 32; i < bytes.Offset + BytesPerEntry; i += 2)
                 {
-                    string hexValue = bytes.Array[i + 1].ToString("X") + bytes.Array[i].ToString("X");
+                    string hexValue = bytes.Array[i + 1].ToString("X2") + bytes.Array[i].ToString("X2");
 
-                    if (hexValue != "00")
+                    if (hexValue != "0000")
                     {
                         Name += hexValue.hexToAscii();
                     }

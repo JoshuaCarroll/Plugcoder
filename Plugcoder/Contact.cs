@@ -12,13 +12,16 @@ namespace Plugcoder
         public string Type;
         public string Name;
 
+        public Contact() { }
+
         public Contact(ArraySegment<byte> bytes)
         {
             if (bytes.Count == this.BytesPerEntry)
             {
-                ID = (bytes.Array[bytes.Offset + 2].ToString("X") + bytes.Array[bytes.Offset + 1].ToString("X") + bytes.Array[bytes.Offset + 0].ToString("X")).hexToDec();
+                string strIdHex = bytes.Array[bytes.Offset + 2].ToString("X2") + bytes.Array[bytes.Offset + 1].ToString("X2") + bytes.Array[bytes.Offset + 0].ToString("X2");
+                ID = strIdHex.hexToDec();
 
-                switch (bytes.Array[bytes.Offset + 3].ToString("X"))
+                switch (bytes.Array[bytes.Offset + 3].ToString("X2"))
                 {
                     case "C1":
                         Type = "Group";
@@ -38,15 +41,11 @@ namespace Plugcoder
                 Name = "";
                 for (int i = bytes.Offset + 4; i < bytes.Offset + 36; i+=2)
                 {
-                    string hexValue = bytes.Array[i + 1].ToString("X") + bytes.Array[i].ToString("X");
+                    string hexValue = bytes.Array[i + 1].ToString("X2") + bytes.Array[i].ToString("X2");
 
-                    if (hexValue != "00")
+                    if (hexValue != "0000")
                     {
                         Name += hexValue.hexToAscii();
-                    }
-                    else
-                    {
-                        break;
                     }
                 }
             }

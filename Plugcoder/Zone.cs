@@ -9,7 +9,7 @@ namespace Plugcoder
     class Zone: MD380RDTObjectGroup
     {
         public string Name;
-        public List<int> ContactIndex;
+        public List<int> ContactIndexList;
 
         public Zone(ArraySegment<byte> bytes)
         {
@@ -18,9 +18,9 @@ namespace Plugcoder
                 Name = "";
                 for (int i = bytes.Offset + 0; i < bytes.Offset + 32; i+=2)
                 {
-                    string hexValue = bytes.Array[i + 1].ToString("X") + bytes.Array[i].ToString("X");
+                    string hexValue = bytes.Array[i + 1].ToString("X2") + bytes.Array[i].ToString("X2");
 
-                    if (hexValue != "00")
+                    if (hexValue != "0000")
                     {
                         Name += hexValue.hexToAscii();
                     }
@@ -30,18 +30,14 @@ namespace Plugcoder
                     }   
                 }
 
-                ContactIndex = new List<int>();
-                for (int i = bytes.Offset + 32; i < bytes.Offset + 32; i += 2)
+                ContactIndexList = new List<int>();
+                for (int i = bytes.Offset + 32; i < bytes.Offset + this.BytesPerEntry; i += 2)
                 {
-                    string hexValue = bytes.Array[i + 1].ToString("X") + bytes.Array[i].ToString("X");
+                    string hexValue = bytes.Array[i + 1].ToString("X2") + bytes.Array[i].ToString("X2");
 
-                    if (hexValue != "00")
+                    if (hexValue != "0000")
                     {
-                        ContactIndex.Add(hexValue.hexToDec());
-                    }
-                    else
-                    {
-                        break;
+                        ContactIndexList.Add(hexValue.hexToDec());
                     }
                 }
             }

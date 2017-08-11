@@ -8,19 +8,19 @@ namespace Plugcoder
 {
     class Contacts : MD380RDTObjectGroup
     {
-        public List<Contact> List;
+        public Dictionary<int, Contact> Items;
 
         public Contacts(byte[] bytes)
         {
-            List = new List<Contact>();
+            Items = new Dictionary<int, Contact>();
 
             for (int i = this.FirstByte; i < this.LastByte; i += this.BytesPerEntry)
             {
                 Contact contact = new Contact(new ArraySegment<byte>(bytes, i, this.BytesPerEntry));
 
-                if (contact.ID != 16777215)
+                if (contact.Name.Trim() != string.Empty)
                 {
-                    List.Add(contact);
+                    Items.Add(contact.ID, contact);
                 }
             }
         }
