@@ -48,5 +48,10 @@ namespace Plugcoder
                 }
             }
         }
+
+        private void OpenDebugFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormDebug().Show();
+        }
     }
 }
