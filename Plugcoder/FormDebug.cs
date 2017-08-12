@@ -32,10 +32,6 @@ namespace Plugcoder
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
             Plugcoder.Codeplug codeplug = new Plugcoder.Codeplug(openFileDialog1.FileName);
-<<<<<<< HEAD:Plugcoder/FormDebug.cs
-=======
-
->>>>>>> origin/master:Plugcoder/Form1.cs
             textBox1.Text = codeplug.ToString();
         }
     }
