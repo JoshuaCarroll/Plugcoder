@@ -45,7 +45,7 @@ namespace Plugcoder
         {
             if (bytes.Count == this.BytesPerEntry)
             {
-                ContactIndex = (bytes.Array[bytes.Offset + 6].ToString("X2") + bytes.Array[bytes.Offset + 7].ToString("X")).hexToDec();
+                ContactIndex = (bytes.Array[bytes.Offset + 6].ToString("X2") + bytes.Array[bytes.Offset + 7].ToString("X2")).hexToDec();
                 EmergencyIndex = (bytes.Array[bytes.Offset + 10].ToString("X2")).hexToDec();
                 ScanListIndex = (bytes.Array[bytes.Offset + 11].ToString("X2")).hexToDec();
                 ReceiveGroupIndex = (bytes.Array[bytes.Offset + 12].ToString("X2")).hexToDec();
