@@ -8,11 +8,11 @@ namespace Plugcoder
 {
     public class Channels : MD380RDTObjectGroup
     {
-        public List<Channel> List;
+        public Dictionary<int, Channel> Items;
 
         public Channels(byte[] bytes)
         {
-            List = new List<Channel>();
+            Items = new Dictionary<int, Channel>();
 
             for (int i = this.FirstByte; i < this.LastByte; i+= this.BytesPerEntry)
             {
@@ -20,7 +20,8 @@ namespace Plugcoder
 
                 if ((channel.Name != "") && (channel.Name != null))
                 {
-                    List.Add(channel);
+                    int index = ((i - this.FirstByte) / this.BytesPerEntry) + 1;
+                    Items.Add(index, channel);
                 }
             }
         }

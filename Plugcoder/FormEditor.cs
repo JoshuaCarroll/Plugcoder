@@ -40,10 +40,11 @@ namespace Plugcoder
             {
                 TreeNode zoneNode = treeViewChannels.Nodes.Add(codeplug.Zones.List[i].Name);
 
-                for (int j = 0; j < codeplug.Zones.List[i].ContactIndexList.Count; j++)
+                for (int j = 0; j < codeplug.Zones.List[i].ChannelIndexList.Count; j++)
                 {
-                    Contact contact = codeplug.Contacts.Items[codeplug.Zones.List[i].ContactIndexList[j]];
-                    TreeNode channelNode = zoneNode.Nodes.Add(contact.ID.ToString(), contact.Name);
+                    int channelIndex = codeplug.Zones.List[i].ChannelIndexList[j];
+                    Channel channel = codeplug.Channels.Items[channelIndex];
+                    TreeNode channelNode = zoneNode.Nodes.Add(channelIndex.ToString(), channel.Name);
                 }
             }
         }

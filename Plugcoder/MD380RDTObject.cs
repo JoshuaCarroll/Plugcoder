@@ -97,25 +97,26 @@ namespace Plugcoder
         }
         public override string ToString()
         {
-            string rtn = "";
-
             Type t = this.GetType();
+
+            string rtn = "____ " + t.Name.ToUpper() + " ____\r\n";
+
             switch (t.Name)
             {
                 case "Channels":
                     Channels channels = (Channels)this;
-                    for (int i = 0; i < channels.List.Count; i++)
+                    for (int i = 0; i < channels.Items.Count; i++)
                     {
-                        Channel obj = channels.List[i];
-                        rtn += obj.Name + " " + obj.ReceiveFrequency.ToString() + " " + obj.ContactIndex.ToString() + "\r\n";
+                        Channel obj = channels.Items.ToList()[i].Value;
+                        rtn += obj.Name + " " + channels.Items.ToList()[i].Key.ToString() + " " + obj.Name + "\r\n";
                     }
                     break;
                 case "Contacts":
                     Contacts contacts = (Contacts)this;
-                    for (int i = 0; i < contacts.List.Count; i++)
+                    for (int i = 0; i < contacts.Items.Count; i++)
                     {
-                        Contact obj = contacts.List[i];
-                        rtn += obj.Name + " " + obj.ID.ToString() + " " + obj.Name.ToString() + "\r\n";
+                        Contact obj = contacts.Items.ToList()[i].Value;
+                        rtn += obj.Name + " " + obj.ID.ToString() + " " + obj.Name + "\r\n";
                     }
                     break;
                 case "RxGroups":
@@ -123,7 +124,7 @@ namespace Plugcoder
                     for (int i = 0; i < rxGroups.List.Count; i++)
                     {
                         RxGroup obj = rxGroups.List[i];
-                        rtn += obj.Name + " " + obj.Name.ToString() + "\r\n";
+                        rtn += obj.Name + " " + obj.Name + "\r\n";
                     }
                     break;
                 case "Zones":
@@ -131,7 +132,20 @@ namespace Plugcoder
                     for (int i = 0; i < zones.List.Count; i++)
                     {
                         Zone obj = zones.List[i];
-                        rtn += obj.Name + "\r\n";
+
+                        rtn += obj.Name + "(Contact indexes: ";
+
+                        for (int j = 0; j < obj.ChannelIndexList.Count; j++)
+                        {
+                            rtn += obj.ChannelIndexList[j].ToString();
+
+                            if (j < obj.ChannelIndexList.Count - 1)
+                            {
+                                rtn += ", ";
+                            }
+                        }
+
+                        rtn += ")\r\n";
                     }
                     break;
                 case "ScanLists":

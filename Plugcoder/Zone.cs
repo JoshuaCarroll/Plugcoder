@@ -9,7 +9,7 @@ namespace Plugcoder
     class Zone: MD380RDTObjectGroup
     {
         public string Name;
-        public List<int> ContactIndexList;
+        public List<int> ChannelIndexList;
 
         public Zone(ArraySegment<byte> bytes)
         {
@@ -30,14 +30,14 @@ namespace Plugcoder
                     }   
                 }
 
-                ContactIndexList = new List<int>();
+                ChannelIndexList = new List<int>();
                 for (int i = bytes.Offset + 32; i < bytes.Offset + this.BytesPerEntry; i += 2)
                 {
                     string hexValue = bytes.Array[i + 1].ToString("X2") + bytes.Array[i].ToString("X2");
 
                     if (hexValue != "0000")
                     {
-                        ContactIndexList.Add(hexValue.hexToDec());
+                        ChannelIndexList.Add(hexValue.hexToDec());
                     }
                 }
             }
