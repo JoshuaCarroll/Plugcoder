@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Plugcoder
 {
-    public partial class Form1 : Form
+    public partial class FormDebug : Form
     {
-        public Form1()
+        public FormDebug()
         {
             InitializeComponent();
         }
@@ -29,17 +29,10 @@ namespace Plugcoder
             openFileDialog1.ShowDialog();
         }
 
-        private void btnParse_Click(object sender, EventArgs e)
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-            Plugcoder.Codeplug codeplug = new Plugcoder.Codeplug(@"X:\Ham radio\Tytera\20170714-N5JLC.rdt");
-
+            Plugcoder.Codeplug codeplug = new Plugcoder.Codeplug(openFileDialog1.FileName);
             textBox1.Text = codeplug.ToString();
-        }
-
-        private void btnOpenEditor_Click(object sender, EventArgs e)
-        {
-            FormEditor f = new FormEditor();
-            f.Show();
         }
     }
 }
