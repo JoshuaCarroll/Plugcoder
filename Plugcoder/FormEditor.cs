@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -34,24 +35,35 @@ namespace Plugcoder
 
         private void LoadRdtFile(string filename)
         {
-            Plugcoder.Codeplug codeplug = new Plugcoder.Codeplug(filename);
+            Codeplug codeplug = new Codeplug(filename);
+
+            TreeNode codeplugNode = treeViewCodeplugs.Nodes.Add("Codeplug (" + filename + ")");
 
             for (int i = 0; i < codeplug.Zones.List.Count; i++)
             {
-                TreeNode zoneNode = treeViewChannels.Nodes.Add(codeplug.Zones.List[i].Name);
+                TreeNode zoneNode = codeplugNode.Nodes.Add(codeplug.Zones.List[i].Name);
+                zoneNode.ContextMenuStrip = contextZone;
 
                 for (int j = 0; j < codeplug.Zones.List[i].ChannelIndexList.Count; j++)
                 {
                     int channelIndex = codeplug.Zones.List[i].ChannelIndexList[j];
                     Channel channel = codeplug.Channels.Items[channelIndex];
                     TreeNode channelNode = zoneNode.Nodes.Add(channelIndex.ToString(), channel.Name);
+                    channelNode.ContextMenuStrip = contextChannel;
                 }
             }
+
+            treeViewCodeplugs.ExpandAll();
         }
 
         private void OpenDebugFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FormDebug().Show();
+        }
+
+        private void treeViewCodeplugs_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            ///TODO: Load item properties
         }
     }
 }
