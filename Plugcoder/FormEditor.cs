@@ -36,13 +36,13 @@ namespace Plugcoder
         private void LoadRdtFile(string filename)
         {
             Codeplug codeplug = new Codeplug(filename);
-
             TreeNode codeplugNode = treeViewCodeplugs.Nodes.Add("Codeplug (" + filename + ")");
 
             for (int i = 0; i < codeplug.Zones.List.Count; i++)
             {
                 TreeNode zoneNode = codeplugNode.Nodes.Add(codeplug.Zones.List[i].Name);
                 zoneNode.ContextMenuStrip = contextZone;
+                zoneNode.Tag = codeplug.Zones.List[i];
 
                 for (int j = 0; j < codeplug.Zones.List[i].ChannelIndexList.Count; j++)
                 {
@@ -50,6 +50,7 @@ namespace Plugcoder
                     Channel channel = codeplug.Channels.Items[channelIndex];
                     TreeNode channelNode = zoneNode.Nodes.Add(channelIndex.ToString(), channel.Name);
                     channelNode.ContextMenuStrip = contextChannel;
+                    channelNode.Tag = channel;
                 }
             }
 
@@ -63,7 +64,36 @@ namespace Plugcoder
 
         private void treeViewCodeplugs_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            ///TODO: Load item properties
+            string nodeTypeString = (e.Node.Tag != null) ? e.Node.Tag.GetType().Name : string.Empty;
+
+            switch (nodeTypeString)
+            {
+                case "Channel":
+                    groupBoxChannel.Visible = true;
+                    Channel channel = (Channel)e.Node.Tag;
+                    txtChannelFrequency.Text = channel.ReceiveFrequency.ToString();
+                    txtChannelName.Text = channel.Name;
+                    txtChannelReceiveGroup.Text = channel.ReceiveGroupIndex.ToString();
+                    txtChannelRekeyDelay.Text = channel.TimeOutTimeRekeyDelay.ToString();
+                    txtChannelScanList.Text = channel.ScanListIndex.ToString();
+                    txtChannelTalkgroup.Text = channel.ContactIndex.ToString();
+                    txtChannelTimeout.Text = channel.TimeOutTime.ToString();
+                    txtChannelTransmitOffset.Text = (channel.TransmitFrequency - channel.ReceiveFrequency).ToString();
+                    break;
+                default:
+                    groupBoxChannel.Visible = false;
+                    break;
+            }
+        }
+
+        private void submitBugReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JoshuaCarroll/Plugcoder/issues/new");
+        }
+
+        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JoshuaCarroll/Plugcoder/wiki/User-guide");
         }
     }
 }

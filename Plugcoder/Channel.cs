@@ -19,9 +19,13 @@ namespace Plugcoder
             Medium,
             Low
         }
+
         public Modes Mode;
         public PowerLevels PowerLevel;
+
         public int ContactIndex;
+        public int TimeOutTime;
+        public int TimeOutTimeRekeyDelay;
         public int EmergencyIndex;
         public int ScanListIndex;
         public int ReceiveGroupIndex;
@@ -46,6 +50,8 @@ namespace Plugcoder
             if (bytes.Count == this.BytesPerEntry)
             {
                 ContactIndex = (bytes.Array[bytes.Offset + 6].ToString("X2") + bytes.Array[bytes.Offset + 7].ToString("X2")).hexToDec();
+                TimeOutTime = (bytes.Array[bytes.Offset + 8].ToString("X2")).hexToDec();
+                TimeOutTimeRekeyDelay = (bytes.Array[bytes.Offset + 9].ToString("X2")).hexToDec();
                 EmergencyIndex = (bytes.Array[bytes.Offset + 10].ToString("X2")).hexToDec();
                 ScanListIndex = (bytes.Array[bytes.Offset + 11].ToString("X2")).hexToDec();
                 ReceiveGroupIndex = (bytes.Array[bytes.Offset + 12].ToString("X2")).hexToDec();

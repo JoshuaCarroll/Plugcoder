@@ -46,13 +46,31 @@
             this.zoneToolStripMenuItemDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.zoneToolStripMenuItemRename = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxChannel = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtChannelName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtChannelFrequency = new System.Windows.Forms.TextBox();
+            this.txtChannelTransmitOffset = new System.Windows.Forms.TextBox();
+            this.txtChannelTalkgroup = new System.Windows.Forms.TextBox();
+            this.txtChannelTimeout = new System.Windows.Forms.TextBox();
+            this.txtChannelRekeyDelay = new System.Windows.Forms.TextBox();
+            this.txtChannelScanList = new System.Windows.Forms.TextBox();
+            this.txtChannelReceiveGroup = new System.Windows.Forms.TextBox();
+            this.submitBugReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextChannel.SuspendLayout();
             this.contextZone.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxChannel.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewCodeplugs
@@ -81,7 +99,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -89,19 +108,22 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userGuideToolStripMenuItem,
+            this.submitBugReportToolStripMenuItem,
+            this.toolStripSeparator2,
             this.openDebugFormToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -110,7 +132,7 @@
             // openDebugFormToolStripMenuItem
             // 
             this.openDebugFormToolStripMenuItem.Name = "openDebugFormToolStripMenuItem";
-            this.openDebugFormToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.openDebugFormToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.openDebugFormToolStripMenuItem.Text = "Open debug form";
             this.openDebugFormToolStripMenuItem.Click += new System.EventHandler(this.OpenDebugFormToolStripMenuItem_Click);
             // 
@@ -180,39 +202,191 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(181, 6);
             // 
-            // groupBox1
+            // groupBoxChannel
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(433, 27);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(421, 250);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Channel";
+            this.groupBoxChannel.Controls.Add(this.txtChannelReceiveGroup);
+            this.groupBoxChannel.Controls.Add(this.txtChannelScanList);
+            this.groupBoxChannel.Controls.Add(this.txtChannelRekeyDelay);
+            this.groupBoxChannel.Controls.Add(this.txtChannelTimeout);
+            this.groupBoxChannel.Controls.Add(this.txtChannelTalkgroup);
+            this.groupBoxChannel.Controls.Add(this.txtChannelTransmitOffset);
+            this.groupBoxChannel.Controls.Add(this.txtChannelFrequency);
+            this.groupBoxChannel.Controls.Add(this.label8);
+            this.groupBoxChannel.Controls.Add(this.label7);
+            this.groupBoxChannel.Controls.Add(this.label6);
+            this.groupBoxChannel.Controls.Add(this.label5);
+            this.groupBoxChannel.Controls.Add(this.label4);
+            this.groupBoxChannel.Controls.Add(this.label3);
+            this.groupBoxChannel.Controls.Add(this.label2);
+            this.groupBoxChannel.Controls.Add(this.txtChannelName);
+            this.groupBoxChannel.Controls.Add(this.label1);
+            this.groupBoxChannel.Location = new System.Drawing.Point(433, 27);
+            this.groupBoxChannel.Name = "groupBoxChannel";
+            this.groupBoxChannel.Size = new System.Drawing.Size(421, 472);
+            this.groupBoxChannel.TabIndex = 3;
+            this.groupBoxChannel.TabStop = false;
+            this.groupBoxChannel.Text = "Channel";
+            this.groupBoxChannel.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(100, 63);
+            this.label1.Location = new System.Drawing.Point(100, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Name";
             // 
-            // textBox1
+            // txtChannelName
             // 
-            this.textBox1.Location = new System.Drawing.Point(141, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(274, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtChannelName.Location = new System.Drawing.Point(141, 19);
+            this.txtChannelName.Name = "txtChannelName";
+            this.txtChannelName.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelName.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(78, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Frequency";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(100, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Offset";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(80, 100);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Talkgroup";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(90, 146);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Timeout";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(66, 172);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(69, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Re-key delay";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(88, 222);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Scan list";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(58, 244);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(77, 13);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "Receive group";
+            // 
+            // txtChannelFrequency
+            // 
+            this.txtChannelFrequency.Location = new System.Drawing.Point(141, 45);
+            this.txtChannelFrequency.Name = "txtChannelFrequency";
+            this.txtChannelFrequency.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelFrequency.TabIndex = 9;
+            // 
+            // txtChannelTransmitOffset
+            // 
+            this.txtChannelTransmitOffset.Location = new System.Drawing.Point(141, 71);
+            this.txtChannelTransmitOffset.Name = "txtChannelTransmitOffset";
+            this.txtChannelTransmitOffset.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelTransmitOffset.TabIndex = 10;
+            // 
+            // txtChannelTalkgroup
+            // 
+            this.txtChannelTalkgroup.Location = new System.Drawing.Point(141, 97);
+            this.txtChannelTalkgroup.Name = "txtChannelTalkgroup";
+            this.txtChannelTalkgroup.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelTalkgroup.TabIndex = 11;
+            // 
+            // txtChannelTimeout
+            // 
+            this.txtChannelTimeout.Location = new System.Drawing.Point(141, 143);
+            this.txtChannelTimeout.Name = "txtChannelTimeout";
+            this.txtChannelTimeout.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelTimeout.TabIndex = 12;
+            // 
+            // txtChannelRekeyDelay
+            // 
+            this.txtChannelRekeyDelay.Location = new System.Drawing.Point(141, 169);
+            this.txtChannelRekeyDelay.Name = "txtChannelRekeyDelay";
+            this.txtChannelRekeyDelay.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelRekeyDelay.TabIndex = 13;
+            // 
+            // txtChannelScanList
+            // 
+            this.txtChannelScanList.Location = new System.Drawing.Point(141, 215);
+            this.txtChannelScanList.Name = "txtChannelScanList";
+            this.txtChannelScanList.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelScanList.TabIndex = 14;
+            // 
+            // txtChannelReceiveGroup
+            // 
+            this.txtChannelReceiveGroup.Location = new System.Drawing.Point(141, 241);
+            this.txtChannelReceiveGroup.Name = "txtChannelReceiveGroup";
+            this.txtChannelReceiveGroup.Size = new System.Drawing.Size(274, 20);
+            this.txtChannelReceiveGroup.TabIndex = 15;
+            // 
+            // submitBugReportToolStripMenuItem
+            // 
+            this.submitBugReportToolStripMenuItem.Name = "submitBugReportToolStripMenuItem";
+            this.submitBugReportToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.submitBugReportToolStripMenuItem.Text = "Submit bug report";
+            this.submitBugReportToolStripMenuItem.Click += new System.EventHandler(this.submitBugReportToolStripMenuItem_Click);
+            // 
+            // userGuideToolStripMenuItem
+            // 
+            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.userGuideToolStripMenuItem.Text = "User guide";
+            this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(168, 6);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Text = "Save as...";
             // 
             // FormEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(866, 511);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxChannel);
             this.Controls.Add(this.treeViewCodeplugs);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -225,8 +399,8 @@
             this.menuStrip1.PerformLayout();
             this.contextChannel.ResumeLayout(false);
             this.contextZone.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxChannel.ResumeLayout(false);
+            this.groupBoxChannel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,8 +425,26 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem zoneToolStripMenuItemRename;
         private System.Windows.Forms.ToolStripMenuItem zoneToolStripMenuItemDelete;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBoxChannel;
+        private System.Windows.Forms.TextBox txtChannelName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtChannelReceiveGroup;
+        private System.Windows.Forms.TextBox txtChannelScanList;
+        private System.Windows.Forms.TextBox txtChannelRekeyDelay;
+        private System.Windows.Forms.TextBox txtChannelTimeout;
+        private System.Windows.Forms.TextBox txtChannelTalkgroup;
+        private System.Windows.Forms.TextBox txtChannelTransmitOffset;
+        private System.Windows.Forms.TextBox txtChannelFrequency;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem submitBugReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
